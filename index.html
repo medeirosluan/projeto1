@@ -27,7 +27,7 @@
     <div class="container">
         <img src="./img/lampadaon.png" alt="lampadaon" id="on">
 
-        <button id="btn" onclick="luz()">Acender luz</button>
+        <button id="btn" onclick="luz()">LAMPADA</button>
     </div>
     <script>
         let lampadaon = document.querySelector('#on')
@@ -35,10 +35,10 @@
         
         if (lampadaon.getAttribute('src') === '/img/lampadaon.png') {
             lampadaon.setAttribute('src','/img/lampadaoff.png')
-            btn.textContent = 'DESLIGAR'
+            btn.textContent = 'LIGAR'
         } else {
             lampadaon.setAttribute('src','/img/lampadaon.png')
-            btn.textContent = 'LIGAR'
+            btn.textContent = 'DESLIGAR'
         }
     }
         
