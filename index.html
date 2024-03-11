@@ -4,8 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+<style>
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    #btn{
+        border-radius: 4px;
+        width: 10%;
+        padding: 10px;
+        font-weight: bold;
+        background-color: aqua;
+    }
+</style>
 </head>
 <body>
-    
+    <div class="container">
+        <img src="./img/lampadaon.png" alt="lampadaon" id="on">
+        <button id="btn" onclick="luz()">Acender luz</button>
+    </div>
+    <script>
+        let lampadaon = document.querySelector('#on')
+    function luz(){
+        
+        if (lampadaon.getAttribute('src') === '/img/lampadaon.png') {
+            lampadaon.setAttribute('src','/img/lampadaoff.png')
+            btn.textContent = 'DESLIGADA'
+        } else {
+            lampadaon.setAttribute('src','/img/lampadaon.png')
+            btn.textContent = 'LIGADA'
+        }
+    }
+        
+    </script>
 </body>
 </html>
