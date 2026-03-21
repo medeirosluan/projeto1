@@ -15,20 +15,24 @@ function getOperation(){
     if (valorSelect === 'sum') {
         return sum(getFirstValor,getSecondValor)
     }
-
+    
     else if (valorSelect === 'subtract') {
         return subtract(getFirstValor,getSecondValor)
     }
-
+    
     else if (valorSelect === 'multipli') {
         return multipli(getFirstValor,getSecondValor)
     }
-
+    
     else if (valorSelect === 'divide') {
         return divide(getFirstValor,getSecondValor)
     }
-}
 
+    else if (valorSelect === 'raiz') {
+        return raiz(getFirstValor)
+    }
+
+}
 
 function sum(getFirstValor,getSecondValor) {
     resultado = getFirstValor + getSecondValor
@@ -50,9 +54,36 @@ function divide(getFirstValor,getSecondValor) {
    return msg.innerHTML = `${resultado}`
 }
 
+function raiz(getFirstValor) {
+    let numberRaiz = Math.sqrt(getFirstValor)
+    return msg.innerHTML = `${numberRaiz.toFixed(2)}`
+}
+
+function quadrada(){
+   
+    if (operation.value === 'raiz') {
+        secondValor.classList.add('oculta')
+        document.querySelector('h1').textContent = 'Raiz Quadrada'
+        btn.textContent = 'Descobrir Raiz'
+    
+    } else {
+        secondValor.classList.remove('oculta')
+        document.querySelector('h1').textContent = 'Calculadora'
+        btn.textContent = 'Calcular'
+    
+    }
+}
+
+
+operation.addEventListener('change',()=>{
+    quadrada()
+})
+
 btn.addEventListener('click',()=>{
     getOperation()
 })
+
+
 
 
 

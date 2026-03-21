@@ -73,3 +73,10 @@ span{
     color: white;
     height: 0;
 }
+
+.oculta{
+    display: none;
+}
+.normal{
+    display: block;
+}
