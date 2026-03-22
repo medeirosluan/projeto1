@@ -1,3 +1,8 @@
+:root{
+    --preto-claro:#00000015;
+    
+}
+
 *{
     padding: 0;
     margin: 0;
@@ -20,35 +25,41 @@ body{
     width: 300px;
 }
 
+.container h1 {
+    text-align: center;
+    color: white;
+}
+
 .container input {
     padding: 20px;
     text-align: center;
     border-radius: 7px;
     border: none;
-    background-color: rgba(0, 0, 0, 0.082);
+    background-color:var(--preto-claro);
     outline: none;
     color: white;
     width: 100%;
 }
+
 .container #operation {
     padding: 10px;
     border-radius: 7px;
     border: none;
-    background-color: rgba(0, 0, 0, 0.082);
-    outline: none;
+    background-color: #00000015;
     font-weight: bold;
+    outline: none;
     width: 100%;
 }
 
-option {
+ option {
     background-color: rgba(20, 19, 19, 0.952);
-    color: white;
+    color: rgb(255, 255, 255);
     text-align: center;
 }
 
 .container button {
     padding: 7px;
-    background-color: rgb(122, 3, 23);
+    background-color: #7a0317;
     color: white;
     font-size: 19px;
     border: none;
@@ -61,11 +72,6 @@ option {
 button:hover {
     background-color: rgba(122, 3, 23, 0.788);
 }
-.container h1 {
-    text-align: center;
-    color: white;
-}
-
 
 span{
     text-align: center;
@@ -76,7 +82,4 @@ span{
 
 .oculta{
     display: none;
-}
-.normal{
-    display: block;
 }
