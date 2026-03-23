@@ -3,6 +3,7 @@ const btn = document.querySelector('button')
 const msg = document.querySelector('span')
 const firstValor = document.querySelector('.first-valor')
 const secondValor = document.querySelector('.second-valor')
+const icon = document.querySelector('.calculadora')
 let resultado = null
 
 
@@ -88,13 +89,15 @@ function quadrada() {
 
     if (operation.value === 'raiz') {
         secondValor.classList.add('oculta')
+        icon.src = '../img/raiz-quadrada.png'
         document.querySelector('h1').textContent = 'Raiz Quadrada'
         btn.textContent = 'Descobrir Raiz'
         firstValor.placeholder = 'Raiz do numero digitado é...';
         msg.textContent = ''
 
     } else if(operation.value === 'even'){
-         secondValor.classList.add('oculta')
+        secondValor.classList.add('oculta')
+        icon.src = '../img/matematica.png'
         document.querySelector('h1').textContent = 'Impar OU Par'
         btn.textContent = 'PAR/IMPAR'
         firstValor.placeholder = 'Digite o numero';
@@ -102,6 +105,7 @@ function quadrada() {
 
     }else{
         secondValor.classList.remove('oculta')
+        icon.src = '../img/calculadora.png'
         document.querySelector('h1').textContent = 'Calculadora'
         btn.textContent = 'Calcular'
         firstValor.placeholder = 'Digite o 1º numero';

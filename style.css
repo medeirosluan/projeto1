@@ -30,6 +30,12 @@ body{
     color: white;
 }
 
+img {
+    width: 80px;
+    display: block;
+    margin: 0 auto;
+}
+
 .container input {
     padding: 20px;
     text-align: center;
