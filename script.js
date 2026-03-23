@@ -84,23 +84,6 @@ function parImpar(getFirstValor) {
 }
 
 
-function evenOdd() {
-
-    if (operation.value === 'even') {
-        secondValor.classList.add('oculta')
-        document.querySelector('h1').textContent = 'Impar OU Par'
-        btn.textContent = 'PAR/IMPAR'
-        firstValor.placeholder = 'Par ou Impar';
-
-    } else {
-        secondValor.classList.remove('oculta')
-        document.querySelector('h1').textContent = 'Calculadora'
-        btn.textContent = 'Calcular'
-        firstValor.placeholder = 'Digite o 1º numero';
-    }
-
-}
-
 function quadrada() {
 
     if (operation.value === 'raiz') {
@@ -108,22 +91,27 @@ function quadrada() {
         document.querySelector('h1').textContent = 'Raiz Quadrada'
         btn.textContent = 'Descobrir Raiz'
         firstValor.placeholder = 'Raiz do numero digitado é...';
+        msg.textContent = ''
 
-    } else {
+    } else if(operation.value === 'even'){
+         secondValor.classList.add('oculta')
+        document.querySelector('h1').textContent = 'Impar OU Par'
+        btn.textContent = 'PAR/IMPAR'
+        firstValor.placeholder = 'Digite o numero';
+        msg.textContent = ''
+
+    }else{
         secondValor.classList.remove('oculta')
         document.querySelector('h1').textContent = 'Calculadora'
         btn.textContent = 'Calcular'
         firstValor.placeholder = 'Digite o 1º numero';
+        msg.textContent = ''
     }
 }
 
 
-operation.addEventListener('change', () => {
-    quadrada()
-    evenOdd()
-})
-
-
+operation.addEventListener('change', quadrada)
+  
 btn.addEventListener('click', () => {
     getOperation()
     firstValor.value = ''
