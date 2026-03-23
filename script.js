@@ -90,7 +90,7 @@ function quadrada() {
     if (operation.value === 'raiz') {
         secondValor.classList.add('oculta')
         icon.src = 'img/raiz-quadrada.png'
-        document.querySelector('h1').textContent = 'Raiz Quadrada'
+        document.querySelector('h1').innerHTML = 'Raiz Quadrada'
         btn.textContent = 'Descobrir Raiz'
         firstValor.placeholder = 'Raiz do numero digitado é...';
         msg.textContent = ''
@@ -98,7 +98,7 @@ function quadrada() {
     } else if(operation.value === 'even'){
         secondValor.classList.add('oculta')
         icon.src = 'img/matematica.png'
-        document.querySelector('h1').textContent = 'Impar OU Par'
+        document.querySelector('h1').innerHTML = 'Impar OU Par'
         btn.textContent = 'PAR/IMPAR'
         firstValor.placeholder = 'Digite o numero';
         msg.textContent = ''
@@ -106,7 +106,7 @@ function quadrada() {
     }else{
         secondValor.classList.remove('oculta')
         icon.src = 'img/calculadora.png'
-        document.querySelector('h1').textContent = 'Calculadora'
+        document.querySelector('h1').innerHTML = 'Calculadora'
         btn.textContent = 'Calcular'
         firstValor.placeholder = 'Digite o 1º numero';
         msg.textContent = ''
