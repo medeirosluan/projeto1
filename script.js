@@ -77,10 +77,10 @@ function raiz(getFirstValor) {
 function parImpar(getFirstValor) {
 
     if (getFirstValor % 2 === 0) {
-        return msg.innerHTML = `${getFirstValor}: PAR`
+        return msg.innerHTML = `PAR`
     }
 
-    return msg.innerHTML = `${getFirstValor}: IMPAR`
+    return msg.innerHTML = `IMPAR`
 }
 
 
