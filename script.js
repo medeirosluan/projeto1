@@ -41,6 +41,9 @@ function getOperation() {
     else if (valorSelect === 'even') {
         return parImpar(getFirstValor)
     }
+    else if (valorSelect === 'age'){
+        return getAge(getFirstValor,getSecondValor)
+    }
 
 }
 
@@ -84,6 +87,11 @@ function parImpar(getFirstValor) {
     return msg.innerHTML = `IMPAR`
 }
 
+function getAge(getFirstValor) {
+     let getAge = 2026 - getFirstValor
+     return msg.innerHTML = `${getAge}`
+}
+
 
 function quadrada() {
 
@@ -94,14 +102,27 @@ function quadrada() {
         firstValor.placeholder = 'Raiz do numero digitado é...';
         msg.textContent = ''
 
-    } else if(operation.value === 'even'){
+    } 
+    
+    else if(operation.value === 'even'){
         secondValor.classList.add('oculta')
         icon.src = 'img/matematica.png'
         btn.textContent = 'PAR/IMPAR'
         firstValor.placeholder = 'Digite o numero';
         msg.textContent = ''
 
-    }else{
+    } 
+
+    else if(operation.value === 'age'){
+        secondValor.classList.add('oculta')
+        icon.src = 'img/pesquisa-de-mercado.png'
+        btn.textContent = 'Descubrar'
+        firstValor.placeholder = 'Digite seu ano de nascimento';
+        msg.textContent = ''
+
+    } 
+    
+    else{
         secondValor.classList.remove('oculta')
         icon.src = 'img/calculadora.png'
         btn.textContent = 'Calcular'
