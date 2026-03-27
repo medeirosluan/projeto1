@@ -56,7 +56,11 @@ function multipli(getFirstValor, getSecondValor) {
 
 function divide(getFirstValor, getSecondValor) {
     resultado = getFirstValor / getSecondValor
-    showMessage(resultado)
+    if(getFirstValor === 0 || getSecondValor === 0){
+       return  showMessage('Não é divisivel por 0')
+    }
+    return showMessage(resultado.toFixed(2))
+   
 }
 
 
