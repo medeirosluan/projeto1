@@ -78,6 +78,7 @@ function parImpar(getFirstValor) {
 function getAge(getFirstValor) {
      let getYear = 2026 - getFirstValor
      if (firstValor.value.length > 4 || firstValor.value.length < 4) {
+        
         return erro.innerHTML = 'Digite um ano de nascimento valido...'
      }
 
@@ -86,6 +87,7 @@ function getAge(getFirstValor) {
 
 function quadrada() {
     showMessage('')
+    erro.innerHTML = ''
     switch (operation.value) {
         case 'raiz':
             secondValor.classList.add('oculta')
