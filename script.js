@@ -75,8 +75,13 @@ function parImpar(getFirstValor) {
 }
 
 function getAge(getFirstValor) {
-     let getAge = 2026 - getFirstValor
-     return showMessage(getAge)
+    const erro = document.querySelector('#messageErro')
+     let getYear = 2026 - getFirstValor
+     if (firstValor.value.length > 4 || firstValor.value.length < 4) {
+        return erro.innerHTML = 'Digite um ano de nascimento valido...'
+     }
+
+     return showMessage(getYear)
 }
 
 
@@ -101,7 +106,7 @@ function quadrada() {
             secondValor.classList.add('oculta')
             titulo.textContent = 'Descubra sua idade'
             btn.textContent = 'Descubrar'
-            firstValor.placeholder = 'Digite seu ano de nascimento';
+            firstValor.placeholder = 'Digite o ano de nascimento ex... 1990,2020';
             break
 
         case 'char':

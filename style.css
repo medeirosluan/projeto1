@@ -46,6 +46,12 @@ img {
     width: 100%;
 }
 
+#messageErro{
+    color: red;
+    font-size: 10px;
+    height: 0;
+}
+
 .container #operation {
     padding: 10px;
     border-radius: 7px;
