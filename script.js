@@ -1,3 +1,4 @@
+const erro = document.querySelector('#messageErro')
 const operation = document.querySelector('#operation')
 const btn = document.querySelector('button')
 const msg = document.querySelector('span')
@@ -75,7 +76,6 @@ function parImpar(getFirstValor) {
 }
 
 function getAge(getFirstValor) {
-    const erro = document.querySelector('#messageErro')
      let getYear = 2026 - getFirstValor
      if (firstValor.value.length > 4 || firstValor.value.length < 4) {
         return erro.innerHTML = 'Digite um ano de nascimento valido...'
@@ -83,7 +83,6 @@ function getAge(getFirstValor) {
 
      return showMessage(getYear)
 }
-
 
 function quadrada() {
     showMessage('')
@@ -128,7 +127,11 @@ function quadrada() {
 }
 
 operation.addEventListener('change', quadrada)
-  
+
+firstValor.addEventListener('click',()=>{
+    erro.innerHTML = ''
+})
+
 btn.addEventListener('click', () => {
     getOperation()
     firstValor.value = ''
