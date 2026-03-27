@@ -3,9 +3,12 @@ const btn = document.querySelector('button')
 const msg = document.querySelector('span')
 const firstValor = document.querySelector('.first-valor')
 const secondValor = document.querySelector('.second-valor')
-const icon = document.querySelector('.calculadora')
+const titulo = document.querySelector('h1')
 let resultado = null
 
+function showMessage(content) {
+   return msg.innerHTML = content;
+}
 
 function getOperation() {
 
@@ -13,122 +16,106 @@ function getOperation() {
     let getFirstValor = Number(firstValor.value)
     let getSecondValor = Number(secondValor.value)
 
-    //verifica se valor do input é igual a SUM
-    if (valorSelect === 'sum') {
-        return sum(getFirstValor, getSecondValor)
+    switch (valorSelect) {
+        case 'sum': return sum(getFirstValor, getSecondValor);
+        case 'subtract': return subtract(getFirstValor,getSecondValor);
+        case 'multipli': return multipli(getFirstValor,getSecondValor);
+        case 'divide': return divide(getFirstValor,getSecondValor);
+        case 'raiz': return raiz(getFirstValor);
+        case 'even': return parImpar(getFirstValor);
+        case 'age': return getAge(getFirstValor);
+        case 'char': return getChar(firstValor);
+        default: showMessage('Operação Invalida')
     }
 
-    //verifica se valor do input é igual a subtract
-    else if (valorSelect === 'subtract') {
-        return subtract(getFirstValor, getSecondValor)
-    }
+}
 
-    //verifica se valor do input é igual a multipli
-    else if (valorSelect === 'multipli') {
-        return multipli(getFirstValor, getSecondValor)
-    }
-
-    //verifica se valor do input é igual a divide
-    else if (valorSelect === 'divide') {
-        return divide(getFirstValor, getSecondValor)
-    }
-
-    //verifica se valor selecionado e igual a raiz
-    else if (valorSelect === 'raiz') {
-        return raiz(getFirstValor)
-    }
-
-    else if (valorSelect === 'even') {
-        return parImpar(getFirstValor)
-    }
-    else if (valorSelect === 'age'){
-        return getAge(getFirstValor,getSecondValor)
-    }
-
+function getChar(getLtterChar) {
+    let letterCount = getLtterChar.value.trim()
+    showMessage(letterCount.length)
 }
 
 
 function sum(getFirstValor, getSecondValor) {
     resultado = getFirstValor + getSecondValor
-    return msg.innerHTML = `${resultado}`
+    showMessage(resultado)
 }
 
 
 function subtract(getFirstValor, getSecondValor) {
     resultado = getFirstValor - getSecondValor
-    return msg.innerHTML = `${resultado}`
+    showMessage(resultado)
 }
 
 
 function multipli(getFirstValor, getSecondValor) {
     resultado = getFirstValor * getSecondValor
-    return msg.innerHTML = `${resultado}`
+    showMessage(resultado)
 }
 
 
 function divide(getFirstValor, getSecondValor) {
     resultado = getFirstValor / getSecondValor
-    return msg.innerHTML = `${resultado}`
+    showMessage(resultado)
 }
 
 
 function raiz(getFirstValor) {
     let numberRaiz = Math.sqrt(getFirstValor)
-    return msg.innerHTML = `${numberRaiz.toFixed(2)}`
+    showMessage(numberRaiz.toFixed(2))
 }
 
 
 function parImpar(getFirstValor) {
-
-    if (getFirstValor % 2 === 0) {
-        return msg.innerHTML = `PAR`
-    }
-
-    return msg.innerHTML = `IMPAR`
+    return showMessage(getFirstValor % 2 === 0 ?'PAR':'IMPAR')
 }
 
 function getAge(getFirstValor) {
      let getAge = 2026 - getFirstValor
-     return msg.innerHTML = `${getAge}`
+     return showMessage(getAge)
 }
 
 
 function quadrada() {
+    showMessage('')
+    switch (operation.value) {
+        case 'raiz':
+            secondValor.classList.add('oculta')
+            titulo.textContent = 'Raiz quadrada'
+            btn.innerHTML = 'Descobrir Raiz'
+            firstValor.placeholder = 'Raiz do numero digitado é...';
+            break
 
-    if (operation.value === 'raiz') {
-        secondValor.classList.add('oculta')
-        icon.src = 'img/raiz-quadrada.png'
-        btn.innerHTML = 'Descobrir Raiz'
-        firstValor.placeholder = 'Raiz do numero digitado é...';
-        msg.textContent = ''
+        case 'even':
+            secondValor.classList.add('oculta')
+            titulo.textContent = 'Par OU Impar'
+            btn.textContent = 'PAR/IMPAR'
+            firstValor.placeholder = 'Digite o numero';
+            break
+        
+        case 'age':
+            secondValor.classList.add('oculta')
+            titulo.textContent = 'Descubra sua idade'
+            btn.textContent = 'Descubrar'
+            firstValor.placeholder = 'Digite seu ano de nascimento';
+            break
 
-    } 
-    
-    else if(operation.value === 'even'){
-        secondValor.classList.add('oculta')
-        icon.src = 'img/matematica.png'
-        btn.textContent = 'PAR/IMPAR'
-        firstValor.placeholder = 'Digite o numero';
-        msg.textContent = ''
+        case 'char':
+            secondValor.classList.add('oculta')
+            firstValor.type = 'text'
+            titulo.textContent = 'Contagem de letras'
+            btn.textContent = 'Contagem'
+            firstValor.placeholder = 'Digite qualquer nome...';
+            break
 
-    } 
-
-    else if(operation.value === 'age'){
-        secondValor.classList.add('oculta')
-        icon.src = 'img/pesquisa-de-mercado.png'
-        btn.textContent = 'Descubrar'
-        firstValor.placeholder = 'Digite seu ano de nascimento';
-        msg.textContent = ''
-
-    } 
-    
-    else{
-        secondValor.classList.remove('oculta')
-        icon.src = 'img/calculadora.png'
-        btn.textContent = 'Calcular'
-        firstValor.placeholder = 'Digite o 1º numero';
-        msg.textContent = ''
+        default:
+            secondValor.classList.remove('oculta')
+            titulo.textContent = 'Calculadora'
+            btn.textContent = 'Calcular'
+            firstValor.placeholder = 'Digite o 1º numero';
+            break
     }
+
 }
 
 operation.addEventListener('change', quadrada)
