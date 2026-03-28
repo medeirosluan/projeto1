@@ -16,7 +16,10 @@ function getOperation() {
     let valorSelect = operation.value
     let getFirstValor = Number(firstValor.value)
     let getSecondValor = Number(secondValor.value)
-
+    
+    if (operation.value !== 'char' && firstValor.value === '') {
+        return showMessage('Insira um valor');
+    }
     switch (valorSelect) {
         case 'sum': return sum(getFirstValor, getSecondValor);
         case 'subtract': return subtract(getFirstValor,getSecondValor);
@@ -25,15 +28,14 @@ function getOperation() {
         case 'raiz': return raiz(getFirstValor);
         case 'even': return parImpar(getFirstValor);
         case 'age': return getAge(getFirstValor);
-        case 'char': return getChar(firstValor);
+        case 'char': return getChar(firstValor.value);
         default: showMessage('Operação Invalida')
     }
 
 }
 
-function getChar(getLtterChar) {
-    let letterCount = getLtterChar.value.trim()
-    showMessage(letterCount.length)
+function getChar(texto) {
+    showMessage(texto.trim().length)
 }
 
 
@@ -57,7 +59,7 @@ function multipli(getFirstValor, getSecondValor) {
 
 function divide(getFirstValor, getSecondValor) {
     resultado = getFirstValor / getSecondValor
-    if(getFirstValor === 0 || getSecondValor === 0){
+    if(getSecondValor === 0){
        return  showMessage('Não é divisivel por 0')
     }
     return showMessage(resultado.toFixed(2))
@@ -81,34 +83,37 @@ function getAge(getFirstValor) {
 }
 
 function quadrada() {
+  
     showMessage('')
     erro.innerHTML = ''
+    firstValor.type = 'number'
+    secondValor.classList.add('oculta')
+
     switch (operation.value) {
+
         case 'raiz':
-            secondValor.classList.add('oculta')
             titulo.textContent = 'Raiz quadrada'
             btn.innerHTML = 'Descobrir Raiz'
             firstValor.placeholder = 'Raiz do numero digitado é...';
             break
 
         case 'even':
-            secondValor.classList.add('oculta')
             titulo.textContent = 'Par OU Impar'
             btn.textContent = 'PAR/IMPAR'
             firstValor.placeholder = 'Digite o numero';
             break
         
         case 'age':
-            secondValor.classList.add('oculta')
             titulo.textContent = 'Descubra sua idade'
             btn.textContent = 'Descubrar'
             firstValor.placeholder = 'Digite o ano de nascimento ex... 1990,2020';
             break
 
         case 'char':
-            secondValor.classList.add('oculta')
             firstValor.type = 'text'
             titulo.textContent = 'Contagem de letras'
+            firstValor.style.backgroundColor = '#ffffff';
+            firstValor.style.color = '#020202';
             btn.textContent = 'Contagem'
             firstValor.placeholder = 'Digite qualquer nome...';
             break
@@ -139,7 +144,11 @@ firstValor.addEventListener('input',()=>{
 
 
 btn.addEventListener('click', () => {
+    erro.innerHTML = ''
+    erro.style.border = ''
+
     getOperation()
+
     firstValor.value = ''
     secondValor.value = ''
 })
