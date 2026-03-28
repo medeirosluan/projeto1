@@ -77,11 +77,6 @@ function parImpar(getFirstValor) {
 
 function getAge(getFirstValor) {
      let getYear = 2026 - getFirstValor
-     if (firstValor.value.length > 4 || firstValor.value.length < 4) {
-        
-        return erro.innerHTML = 'Digite um ano de nascimento valido...'
-     }
-
      return showMessage(getYear)
 }
 
@@ -129,10 +124,19 @@ function quadrada() {
 }
 
 operation.addEventListener('change', quadrada)
-
-firstValor.addEventListener('click',()=>{
-    erro.innerHTML = ''
+firstValor.addEventListener('input',()=>{
+    if (operation.value === 'age') {
+        if (firstValor.value.length > 4 ) {
+            erro.innerHTML = '(Maximo permitido 4 caracteres)'
+            erro.style.border = '1px solid red' 
+        } else {
+            erro.style.border = ''
+            erro.innerHTML = ''
+            
+        }
+    }
 })
+
 
 btn.addEventListener('click', () => {
     getOperation()
