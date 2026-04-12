@@ -1,162 +1,62 @@
-const erro = document.querySelector('#messageErro')
-const operation = document.querySelector('#operation')
-const btn = document.querySelector('button')
-const msg = document.querySelector('span')
-const firstValor = document.querySelector('.first-valor')
-const secondValor = document.querySelector('.second-valor')
-const titulo = document.querySelector('h1')
-let resultado = null
+import { Operations } from "./operations.js"
 
-function showMessage(content) {
-   return msg.innerHTML = content;
+const erro = document.querySelector('#messageErro'),
+    operation = document.querySelector('#operation'),
+    btn = document.querySelector('button'),
+    msg = document.querySelector('span'),
+    firstValor = document.querySelector('.first-valor'),
+    secondValor = document.querySelector('.second-valor'),
+    titulo = document.querySelector('h1')
+
+
+const config = {
+    sum:{btn:'Adição', titulo:'Somar',hidden:false, type:'number',placeholder:'Digite o 1º numero...'},
+    subtract:{btn:'Subitrair',titulo:'Subtração',hidden:false,type:'number',placeholder:'Digite o 1º numero...'},
+    multiply:{btn:'Multiplicar',titulo:'Multiplição',hidden:false,type:'number',placeholder:'Digite o 1º numero...'},
+    divide:{btn:'Dividir',titulo:'Divisão',hidden:false,type:'number',placeholder:'Digite o 1º numero...'},
+    even:{btn:'PAR/IMPAR',titulo:'Par ou Impar',hidden:true,type:'number',placeholder:'Digite o 1º numero...'},
+    age:{btn:'Idade',titulo:'Descobrir idade',hidden:true,type:'number',placeholder:'Digite seu ano de nascimento ex. 2000'},
+    raiz:{btn:'Idade',titulo:'Descobrir idade',hidden:true,type:'number',placeholder:'Digite o 1º numero...'},
+    char:{btn:'Contar',titulo:'Contar letras',hidden:true,type:'text',placeholder:'Digite qualquer nome...'},
 }
 
-function getOperation() {
 
-    let valorSelect = operation.value
-    let getFirstValor = Number(firstValor.value)
-    let getSecondValor = Number(secondValor.value)
+operation.addEventListener('change',() =>{
+
+firstValor.value = ''
+secondValor.value = ''
+
+const configuracoes = config[operation.value]
+titulo.textContent = configuracoes.titulo
+btn.textContent = configuracoes.btn
+firstValor.type = configuracoes.type
+firstValor.placeholder = configuracoes.placeholder 
+
+if (configuracoes) {
+    secondValor.classList.toggle('oculta', configuracoes.hidden)
+}
+
+})    
+
+
+btn.addEventListener('click',()=>{
+    const valor1 = firstValor.value
+    const valor2 = secondValor.value
+    const selecao = operation.value
+
+    const op = new Operations(valor1,valor2)
     
-    if (operation.value !== 'char' && firstValor.value === '') {
-        return showMessage('Insira um valor');
-    }
-    switch (valorSelect) {
-        case 'sum': return sum(getFirstValor, getSecondValor);
-        case 'subtract': return subtract(getFirstValor,getSecondValor);
-        case 'multipli': return multipli(getFirstValor,getSecondValor);
-        case 'divide': return divide(getFirstValor,getSecondValor);
-        case 'raiz': return raiz(getFirstValor);
-        case 'even': return parImpar(getFirstValor);
-        case 'age': return getAge(getFirstValor);
-        case 'char': return getChar(firstValor.value);
-        default: showMessage('Operação Invalida')
+    const calculadora = {
+        sum: () => op.sum(),
+        subtract: () => op.subtract(),
+        multiply: () => op.multiply(),
+        divide: () => op.divide(),
+        even: () => op.even(),
+        age: () => op.age(),
+        raiz: () => op.raiz().toFixed(),
+        char: () => op.char()
+
     }
 
-}
-
-function getChar(texto) {
-    showMessage(texto.trim().length)
-}
-
-
-function sum(getFirstValor, getSecondValor) {
-    resultado = getFirstValor + getSecondValor
-    showMessage(resultado)
-}
-
-
-function subtract(getFirstValor, getSecondValor) {
-    resultado = getFirstValor - getSecondValor
-    showMessage(resultado)
-}
-
-
-function multipli(getFirstValor, getSecondValor) {
-    resultado = getFirstValor * getSecondValor
-    showMessage(resultado)
-}
-
-
-function divide(getFirstValor, getSecondValor) {
-    resultado = getFirstValor / getSecondValor
-    if(getSecondValor === 0){
-       return  showMessage('Não é divisivel por 0')
-    }
-    return showMessage(resultado.toFixed(2))
-   
-}
-
-
-function raiz(getFirstValor) {
-    let numberRaiz = Math.sqrt(getFirstValor)
-    showMessage(numberRaiz.toFixed(2))
-}
-
-
-function parImpar(getFirstValor) {
-    return showMessage(getFirstValor % 2 === 0 ?'PAR':'IMPAR')
-}
-
-function getAge(getFirstValor) {
-     let getYear = 2026 - getFirstValor
-     return showMessage(getYear)
-}
-
-function quadrada() {
-  
-    showMessage('')
-    erro.innerHTML = ''
-    firstValor.type = 'number'
-    secondValor.classList.add('oculta')
-
-    switch (operation.value) {
-
-        case 'raiz':
-            titulo.textContent = 'Raiz quadrada'
-            btn.innerHTML = 'Descobrir Raiz'
-            firstValor.placeholder = 'Raiz do numero digitado é...';
-            break
-
-        case 'even':
-            titulo.textContent = 'Par OU Impar'
-            btn.textContent = 'PAR/IMPAR'
-            firstValor.placeholder = 'Digite o numero';
-            break
-        
-        case 'age':
-            titulo.textContent = 'Descubra sua idade'
-            btn.textContent = 'Descubrar'
-            firstValor.placeholder = 'Digite o ano de nascimento ex... 1990,2020';
-            break
-
-        case 'char':
-            firstValor.type = 'text'
-            titulo.textContent = 'Contagem de letras'
-            firstValor.style.backgroundColor = '#ffffff';
-            firstValor.style.color = '#020202';
-            btn.textContent = 'Contagem'
-            firstValor.placeholder = 'Digite qualquer nome...';
-            break
-
-        default:
-            secondValor.classList.remove('oculta')
-            titulo.textContent = 'Calculadora'
-            btn.textContent = 'Calcular'
-            firstValor.placeholder = 'Digite o 1º numero';
-            break
-    }
-
-}
-
-operation.addEventListener('change', quadrada)
-firstValor.addEventListener('input',()=>{
-    if (operation.value === 'age') {
-        if (firstValor.value.length > 4 ) {
-            erro.innerHTML = '(Maximo permitido 4 caracteres)'
-            erro.style.border = '1px solid red' 
-        } else {
-            erro.style.border = ''
-            erro.innerHTML = ''
-            
-        }
-    }
+    msg.innerHTML = `${calculadora[selecao]()}`
 })
-
-
-btn.addEventListener('click', () => {
-    erro.innerHTML = ''
-    erro.style.border = ''
-
-    getOperation()
-
-    firstValor.value = ''
-    secondValor.value = ''
-})
-
-
-
-
-
-
-
-
