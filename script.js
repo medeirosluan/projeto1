@@ -25,7 +25,7 @@ operation.addEventListener('change',() =>{
 
 firstValor.value = ''
 secondValor.value = ''
-msg.textContent = ''
+msg = ''
 
 const configuracoes = config[operation.value]
 titulo.textContent = configuracoes.titulo
