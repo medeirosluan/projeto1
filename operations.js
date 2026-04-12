@@ -27,8 +27,14 @@ export class Operations {
     }
 
     age(){
-        let year = new Date().getFullYear() - this.v1
-        return year
+        let year = new Date().getFullYear()
+        
+        if (this.v1 > year || this.v1 < 1915) {
+            return 'Ano invalido'
+        }
+
+        return year - this.v1
+        
     }
 
     raiz(){
