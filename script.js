@@ -16,7 +16,7 @@ const config = {
     divide:{btn:'Dividir',titulo:'Divisão',hidden:false,type:'number',placeholder:'Digite o 1º numero...'},
     even:{btn:'PAR/IMPAR',titulo:'Par ou Impar',hidden:true,type:'number',placeholder:'Digite o 1º numero...'},
     age:{btn:'Idade',titulo:'Descobrir idade',hidden:true,type:'number',placeholder:'Digite seu ano de nascimento ex. 2000'},
-    raiz:{btn:'Idade',titulo:'Descobrir idade',hidden:true,type:'number',placeholder:'Digite o 1º numero...'},
+    raiz:{btn:'Raiz',titulo:'Decobrir raiz quadrada',hidden:true,type:'number',placeholder:'Digite o 1º numero...'},
     char:{btn:'Contar',titulo:'Contar letras',hidden:true,type:'text',placeholder:'Digite qualquer nome...'},
 }
 
